@@ -48,7 +48,10 @@ func (config *WxPayConfig) UnifiedOrder(trade_type string, params map[string]str
 		params["spbill_create_ip"] = config.SpbillCreateIp
 	}
 
-	params["appid"] = config.AppId
+	// 条件override
+	if params["appid"] == "" {
+		params["appid"] = config.AppId
+	}
 	params["mch_id"] = config.MchId
 	params["trade_type"] = trade_type
 	params["nonce_str"] = getNonceStr(32) //随机字符串
