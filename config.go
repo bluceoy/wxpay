@@ -11,7 +11,6 @@ type WxPayConfig struct {
 	AppId          string
 	MchId          string
 	AppSecret      string
-	TradeType      string
 	SpbillCreateIp string
 	NotifyUrl      string
 	TlsConfig      *tls.Config
@@ -19,12 +18,11 @@ type WxPayConfig struct {
 }
 
 // 支付配置
-func NewWxPayConfig(appId, appSecret, mchId, tradeType, notifyUrl, spbillCreateIp string, tlsConfig *tls.Config) (config WxPayConfig) {
+func NewWxPayConfig(appId, appSecret, mchId, notifyUrl, spbillCreateIp string, tlsConfig *tls.Config) (config WxPayConfig) {
 	config = WxPayConfig{}
 	config.AppId = appId
 	config.AppSecret = appSecret
 	config.MchId = mchId
-	config.TradeType = tradeType
 	config.NotifyUrl = notifyUrl
 	config.SpbillCreateIp = spbillCreateIp
 	config.Timeout = 6

@@ -17,7 +17,7 @@ const (
 //统一下单，WxPayUnifiedOrder中out_trade_no、body、total_fee、trade_type必填
 //appid、mchid、spbill_create_ip、nonce_str不需要填入
 
-func UnifiedOrder(config WxPayConfig, params map[string]string) (resp UnifiedOrderResponse, err error) {
+func (config *WxPayConfig) UnifiedOrder(trade_type string, params map[string]string) (resp UnifiedOrderResponse, err error) {
 	if params["out_trade_no"] == "" {
 		err = errors.New("缺少统一支付接口必填参数out_trade_no！")
 		return
@@ -29,11 +29,11 @@ func UnifiedOrder(config WxPayConfig, params map[string]string) (resp UnifiedOrd
 		return
 	}
 
-	if config.TradeType == "JSAPI" && params["openid"] == "" {
+	if trade_type == "JSAPI" && params["openid"] == "" {
 		err = errors.New("统一支付接口中，缺少必填参数openid！trade_type为JSAPI时，openid为必填参数！")
 		return
 	}
-	if config.TradeType == "NATIVE" && params["product_id"] == "" {
+	if trade_type == "NATIVE" && params["product_id"] == "" {
 		err = errors.New("统一支付接口中，缺少必填参数product_id！trade_type为JSAPI时，product_id为必填参数！")
 		return
 	}
@@ -50,7 +50,7 @@ func UnifiedOrder(config WxPayConfig, params map[string]string) (resp UnifiedOrd
 
 	params["appid"] = config.AppId
 	params["mch_id"] = config.MchId
-	params["trade_type"] = config.TradeType
+	params["trade_type"] = trade_type
 	params["nonce_str"] = getNonceStr(32) //随机字符串
 	params["sign"] = makeSign(params, config.AppSecret)
 
@@ -86,7 +86,7 @@ func UnifiedOrder(config WxPayConfig, params map[string]string) (resp UnifiedOrd
 //查询订单，WxPayOrderQuery中out_trade_no、transaction_id至少填一个
 //appid、mchid、spbill_create_ip、nonce_str不需要填入
 
-func OrderQuery(config WxPayConfig, params map[string]string) (resp OrderQueryResponse, err error) {
+func (config *WxPayConfig) OrderQuery(params map[string]string) (resp OrderQueryResponse, err error) {
 	if params["out_trade_no"] == "" && params["transaction_id"] == "" {
 		err = errors.New("订单查询接口中，out_trade_no、transaction_id至少填一个！")
 		return
@@ -119,7 +119,7 @@ func OrderQuery(config WxPayConfig, params map[string]string) (resp OrderQueryRe
 //关闭订单，WxPayCloseOrder中out_trade_no必填
 //appid、mchid、spbill_create_ip、nonce_str不需要填入
 
-func CloseOrder(config WxPayConfig, params map[string]string) (resp CloseOrderResponse, err error) {
+func (config *WxPayConfig) CloseOrder(params map[string]string) (resp CloseOrderResponse, err error) {
 	if params["out_trade_no"] == "" {
 		err = errors.New("订单关闭接口中，out_trade_no必填！")
 		return
@@ -162,7 +162,7 @@ func CloseOrder(config WxPayConfig, params map[string]string) (resp CloseOrderRe
 //申请退款，WxPayRefund中out_trade_no、transaction_id至少填一个且
 //out_refund_no、total_fee、refund_fee、op_user_id为必填参数
 
-func Refund(config WxPayConfig, params map[string]string) (resp RefundResponse, err error) {
+func (config *WxPayConfig) Refund(params map[string]string) (resp RefundResponse, err error) {
 	if params["out_trade_no"] == "" && params["transaction_id"] == "" {
 		err = errors.New("退款申请接口中，out_trade_no、transaction_id至少填一个！")
 		return
@@ -220,7 +220,7 @@ func Refund(config WxPayConfig, params map[string]string) (resp RefundResponse, 
 // WxPayRefundQuery中out_refund_no、out_trade_no、transaction_id、refund_id四个参数必填一个
 // appid、mchid、spbill_create_ip、nonce_str不需要填入
 
-func RefundQuery(config WxPayConfig, params map[string]string) (resp RefundQueryResponse, err error) {
+func (config *WxPayConfig) RefundQuery(params map[string]string) (resp RefundQueryResponse, err error) {
 	if params["out_refund_no"] == "" &&
 		params["out_trade_no"] == "" &&
 		params["transaction_id"] == "" &&
@@ -255,7 +255,7 @@ func RefundQuery(config WxPayConfig, params map[string]string) (resp RefundQuery
 
 // 支付结果通用通知
 
-func Notify(config WxPayConfig, body []byte) (resp NotifyResponse, err error) {
+func (config *WxPayConfig) Notify(body []byte) (resp NotifyResponse, err error) {
 	resp = NotifyResponse{}
 	err = xml.Unmarshal(body, &resp)
 	if err != nil {
