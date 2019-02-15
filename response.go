@@ -26,6 +26,7 @@ type UnifiedOrderResponse struct {
 	TradeType string `xml:"trade_type"` // 交易类型
 	PrepayId  string `xml:"prepay_id"`  // 预支付交易会话标识
 	CodeUrl   string `xml:"code_url"`   // 二维码链接
+	MWebUrl   string `xml:"mweb_url"`   // h5支付跳转地址
 }
 
 // 统一下单
