@@ -1,1 +1,1 @@
-module github.com/kassiansun/wxpay
+module github.com/bluceoy/wxpay
