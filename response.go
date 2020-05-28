@@ -38,13 +38,13 @@ type RefundResponse struct {
 	OutRefundNo       string `xml:"out_refund_no"`       // 商户退款单号
 	RefundId          string `xml:"refund_id"`           // 微信退款单号
 	RefundChannel     string `xml:"refund_channel"`      // 退款渠道
-	RefundFee         int64  `xml:"refund_fee"`          // 退款金额
-	TotalFee          int64  `xml:"total_fee"`           // 订单总金额
+	RefundFee         string `xml:"refund_fee"`          // 退款金额
+	TotalFee          string `xml:"total_fee"`           // 订单总金额
 	FeeType           string `xml:"fee_type"`            // 订单金额货币种类
-	CashFee           int64  `xml:"cash_fee"`            // 现金支付金额
-	CashRefundFee     int64  `xml:"cash_refund_fee"`     // 现金退款金额
-	CouponRefundFee   int64  `xml:"coupon_refund_fee"`   // 代金券或立减优惠退款金额
-	CouponRefundCount int64  `xml:"coupon_refund_count"` // 代金券或立减优惠使用数量
+	CashFee           string `xml:"cash_fee"`            // 现金支付金额
+	CashRefundFee     string `xml:"cash_refund_fee"`     // 现金退款金额
+	CouponRefundFee   string `xml:"coupon_refund_fee"`   // 代金券或立减优惠退款金额
+	CouponRefundCount string `xml:"coupon_refund_count"` // 代金券或立减优惠使用数量
 	CouponRefundId    string `xml:"coupon_refund_id"`    // 代金券或立减优惠ID
 }
 
@@ -57,12 +57,12 @@ type OrderQueryResponse struct {
 	TradeType      string `xml:"trade_type"`       // 交易类型
 	TradeState     string `xml:"trade_state"`      // 交易状态
 	BankType       string `xml:"bank_type"`        // 付款银行
-	TotalFee       int64  `xml:"total_fee"`        // 总金额
+	TotalFee       string `xml:"total_fee"`        // 总金额
 	FeeType        string `xml:"fee_type"`         // 货币种类
-	CashFee        int64  `xml:"cash_fee"`         // 现金支付金额
+	CashFee        string `xml:"cash_fee"`         // 现金支付金额
 	CashFeeType    string `xml:"cash_fee_type"`    // 现金支付货币类型
-	CouponFee      int64  `xml:"coupon_fee"`       // 代金券或立减优惠金额
-	CouponCount    int64  `xml:"coupon_count"`     // 代金券或立减优惠使用数量
+	CouponFee      string `xml:"coupon_fee"`       // 代金券或立减优惠金额
+	CouponCount    string `xml:"coupon_count"`     // 代金券或立减优惠使用数量
 	TransactionId  string `xml:"transaction_id"`   // 微信支付订单号
 	OutTradeNo     string `xml:"out_trade_no"`     // 商户订单号
 	Attach         string `xml:"attach"`           // 附加数据
@@ -81,9 +81,9 @@ type RefundQueryResponse struct {
 
 	TransactionId string `xml:"transaction_id"` // 微信订单号
 	OutTradeNo    string `xml:"out_trade_no"`   // 商户订单号
-	TotalFee      int64 `xml:"total_fee"`      // 订单总金额
+	TotalFee      string `xml:"total_fee"`      // 订单总金额
 	FeeType       string `xml:"fee_type"`       // 订单金额货币种类
-	CashFee       int64 `xml:"cash_fee"`       // 现金支付金额
+	CashFee       string `xml:"cash_fee"`       // 现金支付金额
 	RefundCount   string `xml:"refund_count"`   // 退款笔数
 }
 
@@ -95,11 +95,11 @@ type NotifyResponse struct {
 	IsSubscribe   string `xml:"is_subscribe"`   // 是否关注公众账号
 	TradeType     string `xml:"trade_type"`     // 交易类型
 	BankType      string `xml:"bank_type"`      // 付款银行
-	TotalFee      int64  `xml:"total_fee"`      // 总金额
+	TotalFee      string `xml:"total_fee"`      // 总金额
 	FeeType       string `xml:"fee_type"`       // 货币种类
-	CashFee       int64  `xml:"cash_fee"`       // 现金支付金额
+	CashFee       string `xml:"cash_fee"`       // 现金支付金额
 	CashFeeType   string `xml:"cash_fee_type"`  // 现金支付货币类型
-	CouponFee     int64  `xml:"coupon_fee"`     // 代金券或立减优惠金额
+	CouponFee     string `xml:"coupon_fee"`     // 代金券或立减优惠金额
 	CouponCount   string `xml:"coupon_count"`   // 代金券或立减优惠使用数量
 	TransactionId string `xml:"transaction_id"` // 微信支付订单号
 	OutTradeNo    string `xml:"out_trade_no"`   // 商户订单号
