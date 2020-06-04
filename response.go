@@ -14,6 +14,7 @@ type BaseResponse struct {
 	ErrCodeDes string   `xml:"err_code_des"` // 错误描述
 	AppId      string   `xml:"appid"`        // 公众账号ID
 	MchId      string   `xml:"mch_id"`       // 商户号
+	SubMchId   string   `xml:"sub_mch_id"`   // 子商户号
 	DeviceInfo string   `xml:"device_info"`  // 设备号
 	NonceStr   string   `xml:"nonce_str"`    // 随机字符串
 	Sign       string   `xml:"sign"`         // 签名
