@@ -29,7 +29,7 @@ func (config *WxPayConfig) UnifiedOrder(trade_type string, params map[string]str
 		return
 	}
 
-	if trade_type == "JSAPI" && params["openid"] == "" {
+	if trade_type == "JSAPI" && params["openid"] == "" && params["sub_openid"] == "" {
 		err = errors.New("统一支付接口中，缺少必填参数openid！trade_type为JSAPI时，openid为必填参数！")
 		return
 	}
