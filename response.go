@@ -107,6 +107,9 @@ type NotifyResponse struct {
 	CashFeeType    string `xml:"cash_fee_type"`    // 现金支付货币类型
 	CouponFee      string `xml:"coupon_fee"`       // 代金券或立减优惠金额
 	CouponCount    string `xml:"coupon_count"`     // 代金券或立减优惠使用数量
+	CouponFee0     string `xml:"coupon_fee_0"`     // 单个代金券支付金额,$n为下标，从0开始编号
+	CouponId0      string `xml:"coupon_id_0"`      // 代金券ID,$n为下标，从0开始编号
+	CouponType0    string `xml:"coupon_type_0"`    // 代金券类型
 	TransactionId  string `xml:"transaction_id"`   // 微信支付订单号
 	OutTradeNo     string `xml:"out_trade_no"`     // 商户订单号
 	Attach         string `xml:"attach"`           // 商家数据包，原样返回
